@@ -20,12 +20,12 @@ for iter = 1:length(sigmaPoint.A(:,1))
         factor = MP.dtmcUpperRv/norm(velP);
         velP = factor*velP;
     end
-    rvP = norm(rvP);
+    rvP = norm(velP);
 
     pos = [r,0];
     posP = [(pos(1)+0.5*(vel(1)+velP(1))),(pos(2)+0.5*(vel(2)+velP(2)))];
     if norm(posP)>MP.dtmcUpperR
-        factor = MP.dtmcNumR/norm(posP);
+        factor = MP.dtmcUpperR/norm(posP);
         posP = factor*posP;
     end
     rP = norm(posP);
@@ -46,12 +46,12 @@ for iter = 1:length(sigmaPoint.A(:,1))
 
     for i=0:1
         rIdx = rIdxL + i;
-        rIdxP = max([0,min(MP.dtmcNumR,rIdx)]);
+        rIdxP = max([0,min([MP.dtmcNumR,rIdx])]);
         for j=0:1
             rvIdx = rvIdxL + j;
             rvIdxP = max([0,min([MP.dtmcNumRv,rvIdx])]);
             for k=0:1
-                thetaIdx = thetaIdxL +k;
+                thetaIdx = thetaIdxL + k;
                 thetaIdxP = max([-MP.dtmcNumTheta,min(MP.dtmcNumTheta,thetaIdx)]);
 
                 nextStateOrder = rIdxP*(MP.dtmcNumRv+1)*(2*MP.dtmcNumTheta+1)+ ...
