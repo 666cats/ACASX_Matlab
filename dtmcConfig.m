@@ -25,3 +25,5 @@ for rIdx=0:MP.dtmcNumR
     end
 end
 
+DTMCConfig = uStates;
+end

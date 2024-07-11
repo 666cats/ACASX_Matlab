@@ -5,11 +5,11 @@ ModelParams = getModelParams();
 
 % mdp process
 cStates = mdpConfig(ModelParams);
-U = mdpVIConfig(ModelParams,cStates);
-storeQValues(cStates,U,ModelParams);
+U1 = mdpVIConfig(ModelParams,cStates);
+storeQValues(cStates,U1,ModelParams);
 
 %% mdp and dtmc are decoupled and can run independently
 
 %dtmc process
-
-dtmcConfig(ModelParams);
+uStates = dtmcConfig(ModelParams);
+U2 = dtmcVIConfig(ModelParams,uStates);

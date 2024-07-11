@@ -17,6 +17,7 @@ ModelParams.dtmcResRv = ModelParams.dtmcUpperRv/ModelParams.dtmcNumRv;
 ModelParams.dtmcResTheta = ModelParams.dtmcUpperTheta/ModelParams.dtmcNumTheta;
 
 ModelParams.dtmcWhiteNoise = 3;
+ModelParams.dtmcWhiteNoiseAngle = 2;
 
 %% mdp Params
 
