@@ -29,3 +29,15 @@ for iteration=2:MP.timeHorizon+1
         prob = 0;
         if uStates(i).r > MP.dtmcCollisionR
             SP = getDtmcProbs(uStates,i,sigmaPoint,MP);
+            for entry=1:length(SP(:,1));
+                nextStateOrder = SP(entry,1);
+                prob = prob + U(iteration-1,nextStateOrder+1);
+            end
+        end
+        U(iteration,i) = prob;
+
+    end
+end
+
+DTMCVIConfig = U;
+end
