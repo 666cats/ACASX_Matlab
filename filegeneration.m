@@ -10,7 +10,7 @@ storeQValues(cStates,U1,ModelParams);
 
 %% mdp and dtmc are decoupled and can run independently
 
-%dtmc process
+% dtmc process
 uStates = dtmcConfig(ModelParams);
 U2 = dtmcVIConfig(ModelParams,uStates);
 storeValues(uStates,U2,ModelParams);

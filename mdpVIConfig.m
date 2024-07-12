@@ -9,6 +9,7 @@ for i=1:numCstates
 end
 
 JkBar = zeros(1,numCstates);
+Utemp = zeros(1,numCstates);
 
 sigmaPoint.A(1,:)=[0,0,0.5];
 sigmaPoint.A(2,:)=[0,sqrt(2)*MP.mdpWhiteNoise,0.25];
@@ -23,7 +24,7 @@ sigmaPoint.B(5,:)=[0,-sqrt(3)*MP.mdpWhiteNoise,1/6];
 
 for iteration=2:MP.timeHorizon+1
     fprintf('The mdpVI iteration is %d\n',iteration-1);
-    for i=1:numCstates
+    parfor (i=1:numCstates,8)
         actionArry = getActions(cStates,i,MP);
         aMax1 = -1e12;
         aMax2 = -1e12;
@@ -42,9 +43,12 @@ for iteration=2:MP.timeHorizon+1
             aMax2 = max([aMax2,aSum2]);
         end
 
-        U(iteration,i) = aMax1;
+        % U(iteration,i) = aMax1;
+        Utemp(i) = aMax1;
         JkBar(i) = aMax2;
     end
+
+    U(iteration,:) = Utemp;
 
     for i=1:numCstates
         U(MP.timeHorizon+2,i) = JkBar(i);

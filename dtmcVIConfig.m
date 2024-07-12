@@ -2,6 +2,7 @@ function DTMCVIConfig = dtmcVIConfig(MP,uStates)
 
 numUstates = (MP.dtmcNumR+1)*(MP.dtmcNumRv+1)*(2*MP.dtmcNumTheta+1);
 U = zeros(MP.timeHorizon+2,numUstates);
+Utemp = zeros(1,numUstates);
 
 for i=1:numUstates
     if uStates(i).r<=MP.dtmcCollisionR
@@ -25,7 +26,7 @@ sigmaPoint.B(5,:) = [0,-sqrt(3)*2*MP.dtmcWhiteNoiseAngle,1/6];
 
 for iteration=2:MP.timeHorizon+1
     fprintf('The dtmcVI iteration is %d\n',iteration-1);
-    for i=1:numUstates
+    parfor (i=1:numUstates,8)
         prob = 0;
         if uStates(i).r > MP.dtmcCollisionR
             SP = getDtmcProbs(uStates,i,sigmaPoint,MP);
@@ -34,9 +35,10 @@ for iteration=2:MP.timeHorizon+1
                 prob = prob + SP(entry,2)*U(iteration-1,nextStateOrder+1);
             end
         end
-        U(iteration,i) = prob;
-
+        % Utemp(iteration,i) = prob;
+        Utemp(i) = prob;
     end
+    U(iteration,:) = Utemp;
 end
 
 DTMCVIConfig = U;
