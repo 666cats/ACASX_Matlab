@@ -40,10 +40,10 @@ for i=2:MP.timeHorizon+2
     end
 end
 
-indexFileWrite = [indexFileWrite,index];
+indexFileWrite = [indexFileWrite;index];
 
-save('indexFile.mat','indexFileWrite');
-save('actionFile.mat','actionFileWrite');
-save('costFile.mat','costFileWrite');
+save('/home/yu/codetest/ACASX_FileStore/indexFile.mat','indexFileWrite');
+save('/home/yu/codetest/ACASX_FileStore/actionFile.mat','actionFileWrite');
+save('/home/yu/codetest/ACASX_FileStore/costFile.mat','costFileWrite');
 
 end
