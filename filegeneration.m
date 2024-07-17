@@ -1,6 +1,6 @@
 clc
 clear all
-
+% parpool("Processes",6);
 ModelParams = getModelParams();
 
 % mdp process
@@ -11,6 +11,6 @@ storeQValues(cStates,U1,ModelParams);
 %% mdp and dtmc are decoupled and can run independently
 
 % dtmc process
-uStates = dtmcConfig(ModelParams);
-U2 = dtmcVIConfig(ModelParams,uStates);
-storeValues(uStates,U2,ModelParams);
+% uStates = dtmcConfig(ModelParams);
+% U2 = dtmcVIConfig(ModelParams,uStates);
+% storeValues(uStates,U2,ModelParams);

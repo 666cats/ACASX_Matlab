@@ -26,7 +26,7 @@ sigmaPoint.B(5,:) = [0,-sqrt(3)*2*MP.dtmcWhiteNoiseAngle,1/6];
 
 for iteration=2:MP.timeHorizon+1
     fprintf('The dtmcVI iteration is %d\n',iteration-1);
-    parfor (i=1:numUstates,8)
+    parfor i=1:numUstates
         prob = 0;
         if uStates(i).r > MP.dtmcCollisionR
             SP = getDtmcProbs(uStates,i,sigmaPoint,MP);

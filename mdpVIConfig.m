@@ -24,7 +24,7 @@ sigmaPoint.B(5,:)=[0,-sqrt(3)*MP.mdpWhiteNoise,1/6];
 
 for iteration=2:MP.timeHorizon+1
     fprintf('The mdpVI iteration is %d\n',iteration-1);
-    parfor (i=1:numCstates,8)
+    parfor i=1:numCstates
         actionArry = getActions(cStates,i,MP);
         aMax1 = -1e12;
         aMax2 = -1e12;
