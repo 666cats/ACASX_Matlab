@@ -9,7 +9,7 @@ MP = getModelParams();
 
 ownshipLoc = [0,500,0];
 ownshipvel = [203,0,0];
-intruderLoc = [4034,547,0];
+intruderLoc = [4034,500,0];
 intruderVel = [-185,0,0];
 
 numUStates = (MP.dtmcNumR+1)*(MP.dtmcNumRv+1)*(2*MP.dtmcNumTheta+1);
@@ -185,11 +185,4 @@ for lastRA=0:6
     fprintf("bestActionCode is %d\n",nowRA);
 
 end
-
-
-
-
-
-
-
 
